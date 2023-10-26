@@ -47,6 +47,16 @@ app.get('/api/articulos/:id', (req,res)=>{
     });
 });
 
-
+app.post('/api/articulos',(req,res)=>{
+    let data = {descripcion:req.body.descripcion, precio:req.body.precio, stock:req.body.stock};
+    let sql = "INSERT INTO articulos SET ?";
+    conexion.query(sql,data,function(error,results){
+        if(error){
+            throw error;
+        } else{
+            res.send(results);
+        }
+    })
+})
 
 
